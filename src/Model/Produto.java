@@ -2,7 +2,7 @@ package Model;
 
 import java.util.List;
 
-public abstract class Produto {
+public class Produto {
     private String documento;
     private String nome;
     private String descricao;

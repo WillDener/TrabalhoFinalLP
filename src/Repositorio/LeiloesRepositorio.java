@@ -84,22 +84,21 @@ public class LeiloesRepositorio {
         }
     }
 
-    public String ApresentacaoLeilao (Data dataAtual, String status){
-        //SetarStatusPorDataAtual(dataAtual);
+    public String ApresentacaoLeilao (){
         for (Leilao leilao:leilaos){
-            if (leilao.getStatus().equals(status)&& status.equals(Leilao.StatusLeilao.ABERTO)){
+            if (leilao.getStatus().equals(Leilao.StatusLeilao.ABERTO)){
                 leilao.toStringLeilao();
                 for (Produto produto:leilao.getProdutos()) {
                     return produto.toStringProduto()+"\nGanhador: "+"N/A";
                 }
             }
-            if (leilao.getStatus().equals(status)&& status.equals(Leilao.StatusLeilao.FINALIZADO)){
+            if (leilao.getStatus().equals(Leilao.StatusLeilao.FINALIZADO)){
                 leilao.toStringLeilao();
                 for (Produto produto:leilao.getProdutos()){
                     return produto.toStringProduto() + produto.Ganhador().toStringLance();
                 }
             }
-            if (leilao.getStatus().equals(status)&& status.equals(Leilao.StatusLeilao.ANDAMENTO)){
+            if (leilao.getStatus().equals(Leilao.StatusLeilao.ANDAMENTO)){
                 leilao.toStringLeilao();
                 for (Produto produto: leilao.getProdutos()){
                     return produto.toStringProduto()+"\nGanhador: "+"N/A";
@@ -108,7 +107,5 @@ public class LeiloesRepositorio {
         }
         return null;
     }
-
-
 
 }
