@@ -5,7 +5,8 @@ import java.util.List;
 public class Leilao {
 
     private Instituicao inst;
-    private List<Produto> produtos;
+    private List<Veiculo> veiculos;
+    private List<Imovel> imovels;
     private Data dataInicio;
     private Data dataTermino;
     private Endereco endereco;
@@ -25,12 +26,20 @@ public class Leilao {
         this.inst = inst;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
+    }
+
+    public List<Imovel> getImovels() {
+        return imovels;
+    }
+
+    public void setImovels(List<Imovel> imovels) {
+        this.imovels = imovels;
     }
 
     public Data getDataInicio() {
@@ -65,9 +74,10 @@ public class Leilao {
         this.endereco = endereco;
     }
 
-    public Leilao(Instituicao inst, List<Produto> produtos, Data dataInicio,Data dataTermino, Endereco endereco,StatusLeilao status,Data dataAtual) {
+    public Leilao(Instituicao inst, List<Veiculo> veiculos,List<Imovel> imovels, Data dataInicio,Data dataTermino, Endereco endereco,Data dataAtual) {
         this.inst = inst;
-        this.produtos = produtos;
+        this.veiculos = veiculos;
+        this.imovels = imovels;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
         this.endereco = endereco;
@@ -76,21 +86,29 @@ public class Leilao {
 
     public String toStringLeilao(){
         return inst.toStringInstituicao()+endereco.ImprimirEndereco()+"\nData Inicio:"+ dataInicio.imprimirData()+
-                "Data Termino:"+dataTermino.imprimirData()+"\nStatus: "+status+ListarProdutosDoLeilao();
+                "Data Termino:"+dataTermino.imprimirData()+"\nStatus: "+status+ListarImovelsDoLeilao()+ListarVeiculosDoLeilao();
     }
 
-    public String ListarProdutosDoLeilao (){
-        for (Produto produto:produtos){
-            produto.toStringProduto();
+    public String ListarVeiculosDoLeilao (){
+        for (Veiculo veiculo:veiculos){
+            veiculo.toStringVeiculo();
         }
         return null;
     }
 
-    public double calcularFatura(){
-        double cont = 0.0;
-        for (Produto produto:produtos){
-            cont = cont + produto.calcularLances();
+
+    public String ListarImovelsDoLeilao (){
+        for (Imovel imovel:imovels){
+            imovel.toStringImovel();
         }
+        return null;
+    }
+
+    public double calcularFatura(Leilao leilao){
+        double cont = 0.0;
+        if (leilao.equals(StatusLeilao.FINALIZADO))
+            for (Imovel imovel:leilao.imovels){ cont = cont + imovel.GanhadorImovel(imovel).getValor(); }
+            for (Veiculo veiculo:leilao.veiculos) {cont = cont + veiculo.GanhadorVeiculo(veiculo).getValor();}
         return cont;
     }
 

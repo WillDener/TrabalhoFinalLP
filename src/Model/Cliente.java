@@ -3,7 +3,7 @@ package Model;
 
 public class Cliente {
     private String nome;
-    private int cpf;
+    private String cpf;
     private String login;
     private String senha;
 
@@ -15,11 +15,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -39,7 +39,7 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public Cliente(String nome, int cpf, String login, String senha) {
+    public Cliente(String nome, String cpf, String login, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.login = login;

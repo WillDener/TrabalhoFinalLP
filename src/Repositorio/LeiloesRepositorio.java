@@ -1,8 +1,6 @@
 package Repositorio;
 
-import Model.Data;
-import Model.Leilao;
-import Model.Produto;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class LeiloesRepositorio {
         double aux = 0.0;
         for (Leilao leilao: leilaos){
             if (leilao.getStatus().equals(Leilao.StatusLeilao.FINALIZADO)){
-                aux = leilao.calcularFatura();
+                aux = leilao.calcularFatura(leilao);
                 return leilao.toStringLeilao()+"n\nLeilao rendeu de fattura: "+aux;
             }
             aux =0;
@@ -88,22 +86,19 @@ public class LeiloesRepositorio {
         for (Leilao leilao:leilaos){
             if (leilao.getStatus().equals(Leilao.StatusLeilao.ABERTO)){
                 leilao.toStringLeilao();
-                for (Produto produto:leilao.getProdutos()) {
-                    return produto.toStringProduto()+"\nGanhador: "+"N/A";
-                }
+                for (Veiculo veiculo:leilao.getVeiculos()) { return veiculo.toStringVeiculo()+"\nGanhador: "+"N/A"; }
+                for (Imovel imovel: leilao.getImovels()){return imovel.toStringImovel()+"\nGanhador: "+"N/A";}
             }
             if (leilao.getStatus().equals(Leilao.StatusLeilao.FINALIZADO)){
                 leilao.toStringLeilao();
-                for (Produto produto:leilao.getProdutos()){
-                    return produto.toStringProduto() + produto.Ganhador().toStringLance();
+                for (Veiculo veiculo:leilao.getVeiculos()){ return veiculo.toStringVeiculo() + veiculo.GanhadorVeiculo(veiculo).toStringLance(); }
+                for (Imovel imovel:leilao.getImovels()){return imovel.toStringImovel() + imovel.GanhadorImovel(imovel).toStringLance();}
                 }
-            }
             if (leilao.getStatus().equals(Leilao.StatusLeilao.ANDAMENTO)){
                 leilao.toStringLeilao();
-                for (Produto produto: leilao.getProdutos()){
-                    return produto.toStringProduto()+"\nGanhador: "+"N/A";
+                for (Veiculo veiculo: leilao.getVeiculos()){ return veiculo.toStringVeiculo()+"\nGanhador: "+"N/A"; }
+                for (Imovel imovel:leilao.getImovels()){return imovel.toStringImovel() + imovel.GanhadorImovel(imovel).toStringLance();}
                 }
-            }
         }
         return null;
     }

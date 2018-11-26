@@ -12,25 +12,25 @@ public class InstituicaoRepositorio {
 
     public void AdicionarInstituicao (Instituicao instituicao){ instituicaos.add(instituicao); }
 
-    public Instituicao Consultainstituicao (int cnpj){
+    public Instituicao Consultainstituicao (String cnpj){
         for (Instituicao instituicao:instituicaos){
-            if (instituicao.getCnpj() == cnpj){
+            if (instituicao.getCnpj().equals(cnpj)){
                 return instituicao;
             }
         }
         return null;
     }
 
-    public void AtualizacaoRegistro (String nome, int cnpj, int newcnpj){
+    public void AtualizacaoRegistro (String nome, String cnpj, String newcnpj){
         for (Instituicao instituicao:instituicaos){
-            if (instituicao.getCnpj() == cnpj){
+            if (instituicao.getCnpj().equals(cnpj)){
                 instituicao.setCnpj(newcnpj);
                 instituicao.setNome(nome);
             }
         }
     }
 
-    public void removerInstituicao (int cnpj){
+    public void removerInstituicao (String cnpj){
         Instituicao aux = Consultainstituicao(cnpj);
         instituicaos.remove(aux);
     }

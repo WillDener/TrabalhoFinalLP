@@ -66,7 +66,9 @@ public class ImovelRepositorio {
         }
         for (Imovel imovel: imovels){
             return "\nNome: "+imovel.getNome()+"\nInstituicao responsavel pelo leilao: "+imovel.getLeilao().getInst()
-                    +"\nQuantidade de Produtos: "+ imovel.getLeilao().getProdutos().size()
+                    +"\nQuantidade de Produtos:\n "+
+                    "Quantidade de Imoveis: "+ imovel.getLeilao().getImovels().size()+
+                    "\nQuantidade de Veiculos: "+imovel.getLeilao().getVeiculos().size()
                     +"\nDados Leiloes"+"\nData: "+imovel.getLeilao().getDataInicio().imprimirData()+
                     "\nEndereco: "+imovel.getLeilao().getEndereco().ImprimirEndereco()+
                     "\nStatus Leilao: "+imovel.getLeilao().getStatus()+

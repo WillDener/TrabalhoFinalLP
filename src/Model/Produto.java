@@ -78,9 +78,19 @@ public class Produto {
         return "\nNome: "+nome+"\nDocumento: "+documento+"\nDescricao: "+descricao+"\nLeilao: "+leilao+"\nLances feito:\n"+ListarLancesProduto();
     }
 
-    public Lance Ganhador (){
+    public Lance GanhadorImovel (Imovel imovel){
         Lance maiorLance = new Lance();
-        for (Lance lance:lances){
+        for (Lance lance:imovel.getLances()){
+            if (lance.getValor() > maiorLance.getValor()){
+                maiorLance.equals(lance);
+            }
+        }
+        return maiorLance;
+    }
+
+    public Lance GanhadorVeiculo (Veiculo veiculo){
+        Lance maiorLance = new Lance();
+        for (Lance lance:veiculo.getLances()){
             if (lance.getValor() > maiorLance.getValor()){
                 maiorLance.equals(lance);
             }

@@ -27,7 +27,7 @@ public class ClienteRepositorio {
         return null;
     }
 
-    public void AtualizarCliente(String nome, int cpf, String login, String senha,String newlogin,String newsenha){
+    public void AtualizarCliente(String nome, String cpf, String login, String senha, String newlogin, String newsenha){
         for (Cliente cliente:clientes){
             if (cliente.getSenha().equals(senha) && cliente.getLogin().equals(login)){
                 cliente.setCpf(cpf);

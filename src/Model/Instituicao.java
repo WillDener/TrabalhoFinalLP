@@ -2,7 +2,7 @@ package Model;
 
 public class Instituicao {
     private String nome;
-    private int cnpj;
+    private String cnpj;
 
     public String getNome() {
         return nome;
@@ -12,15 +12,15 @@ public class Instituicao {
         this.nome = nome;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-    public Instituicao(String nome, int cnpj) {
+    public Instituicao(String nome, String cnpj) {
         this.nome = nome;
         this.cnpj = cnpj;
     }

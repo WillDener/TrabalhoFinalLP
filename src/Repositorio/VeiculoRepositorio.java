@@ -66,7 +66,9 @@ public class VeiculoRepositorio {
         }
         for (Veiculo veiculo: veiculos){
             return "\nNome: "+veiculo.getNome()+"\nInstituicao responsavel pelo leilao: "+veiculo.getLeilao().getInst()
-                    +"\nQuantidade de Produtos: "+ veiculo.getLeilao().getProdutos().size()
+                    +"\nQuantidade de Produtos:\n "+
+                    "Quantidade de Imoveis: "+ veiculo.getLeilao().getImovels().size()+
+                    "\nQuantidade de Veiculos: "+veiculo.getLeilao().getVeiculos().size()
                     +"\nDados Leiloes"+"\nData: "+veiculo.getLeilao().getDataInicio().imprimirData()+
                     "\nEndereco: "+veiculo.getLeilao().getEndereco().ImprimirEndereco()+
                     "\nStatus Leilao: "+veiculo.getLeilao().getStatus()+
