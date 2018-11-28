@@ -16,7 +16,7 @@ public class ImovelRepositorio {
     }
 
     public String ListarTodosImoveis(){
-        for (Imovel imovel:imovels){ return imovel.toStringImovel(); }
+        for (Imovel imovel:imovels){  imovel.toStringImovel(); }
         return null;
     }
 
@@ -54,7 +54,7 @@ public class ImovelRepositorio {
         Imovel aux = ConsultarPorDoc(doc);
         imovels.remove(aux);
     }
-    public String ApresentacaoListaDeImovel(){
+    public void ApresentacaoListaDeImovel(){
         Imovel aux;
         for (int k=0; k < imovels.size(); k++){
             for (int j=k+1; j<= imovels.size();j++)
@@ -64,18 +64,24 @@ public class ImovelRepositorio {
                     imovels.get(j).equals(aux);
                 }
         }
-        for (Imovel imovel: imovels){
-            return "\nNome: "+imovel.getNome()+"\nInstituicao responsavel pelo leilao: "+imovel.getLeilao().getInst()
-                    +"\nQuantidade de Produtos:\n "+
-                    "Quantidade de Imoveis: "+ imovel.getLeilao().getImovels().size()+
-                    "\nQuantidade de Veiculos: "+imovel.getLeilao().getVeiculos().size()
-                    +"\nDados Leiloes"+"\nData: "+imovel.getLeilao().getDataInicio().imprimirData()+
-                    "\nEndereco: "+imovel.getLeilao().getEndereco().ImprimirEndereco()+
-                    "\nStatus Leilao: "+imovel.getLeilao().getStatus()+
-                    "\nDados Produto: "+imovel.toStringProduto()+
-                    "\nDados Veiculo: "+imovel.toStringImovel();
+        for (Imovel imovel: imovels) {
+            System.out.println("\nNome: ");
+            imovel.getNome();
+            System.out.println("\nInstituicao responsavel pelo leilao: ");
+            imovel.getLeilao().getInst().toStringInstituicao();
+            System.out.println("\nQuantidade de Produtos:\n ");
+            System.out.println("Quantidade de Imoveis: " + imovel.getLeilao().getImovels().size() +
+                    "\nQuantidade de Veiculos: " + imovel.getLeilao().getVeiculos().size());
+            System.out.println("\nDados Leiloes" + "\nData: ");
+            imovel.getLeilao().getDataInicio().imprimirData();
+            System.out.println("\nEndereco: ");
+            imovel.getLeilao().getEndereco().ImprimirEndereco();
+            System.out.println("\nStatus Leilao: " + imovel.getLeilao().getStatus());
+            System.out.println("\nDados Produto: ");
+            imovel.toStringProduto();
+            System.out.println("\nDados Veiculo: ");
+            imovel.toStringImovel();
         }
-        return null;
     }
 
     public Imovel FiltroPreco(double min, double max){
@@ -87,13 +93,12 @@ public class ImovelRepositorio {
         return null;
     }
 
-    public String BuscaPorDescricao (String descricao){
+    public void BuscaPorDescricao (String descricao){
         for (Imovel imovel:imovels){
             if (imovel.getDescricao().equals(descricao)){
-                return imovel.toStringImovel();
+                 imovel.toStringImovel();
             }
         }
-        return null;
     }
 
 }

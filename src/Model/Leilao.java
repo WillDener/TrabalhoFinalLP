@@ -84,31 +84,35 @@ public class Leilao {
         this.status = setarStatus(dataAtual);
     }
 
-    public String toStringLeilao(){
-        return inst.toStringInstituicao()+endereco.ImprimirEndereco()+"\nData Inicio:"+ dataInicio.imprimirData()+
-                "Data Termino:"+dataTermino.imprimirData()+"\nStatus: "+status+ListarImovelsDoLeilao()+ListarVeiculosDoLeilao();
-    }
+    public void toStringLeilao(){
+        inst.toStringInstituicao();
+        endereco.ImprimirEndereco();
+        System.out.println("\nData Inicio: ");
+        dataInicio.imprimirData();
+        System.out.println("\nData Termino: ");
+        dataTermino.imprimirData();
+        System.out.println("\nStatus: "+status);
+        ListarImovelsDoLeilao();
+        ListarVeiculosDoLeilao();
+        }
 
-    public String ListarVeiculosDoLeilao (){
+    public void ListarVeiculosDoLeilao (){
         for (Veiculo veiculo:veiculos){
             veiculo.toStringVeiculo();
         }
-        return null;
     }
 
 
-    public String ListarImovelsDoLeilao (){
+    public void ListarImovelsDoLeilao (){
         for (Imovel imovel:imovels){
             imovel.toStringImovel();
         }
-        return null;
     }
 
     public double calcularFatura(Leilao leilao){
         double cont = 0.0;
-        if (leilao.equals(StatusLeilao.FINALIZADO))
-            for (Imovel imovel:leilao.imovels){ cont = cont + imovel.GanhadorImovel(imovel).getValor(); }
-            for (Veiculo veiculo:leilao.veiculos) {cont = cont + veiculo.GanhadorVeiculo(veiculo).getValor();}
+        for (Imovel imovel:leilao.imovels){ cont = cont + imovel.GanhadorImovel(imovel); }
+        for (Veiculo veiculo:leilao.veiculos) {cont = cont + veiculo.GanhadorVeiculo(veiculo);}
         return cont;
     }
 

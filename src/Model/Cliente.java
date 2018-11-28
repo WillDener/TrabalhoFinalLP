@@ -46,8 +46,8 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public String toStringClienteLance(){
-        return "\nNome: "+nome+"\nCPF: "+cpf+"\nLogin: "+login;
+    public void toStringClienteLance(){
+        System.out.println( "\nNome: "+nome+"\nCPF: "+cpf+"\nLogin: "+login);
     }
 
     public Cliente(){}

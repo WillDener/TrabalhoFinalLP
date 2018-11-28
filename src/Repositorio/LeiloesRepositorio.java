@@ -9,16 +9,18 @@ public class LeiloesRepositorio {
 
     private List<Leilao> leilaos = new ArrayList<>();
 
-    public String ListarTodosLeiloes(){
+    public void ListarTodosLeiloes(){
         for (Leilao leilao: leilaos){
-            return leilao.toStringLeilao();
+            leilao.toStringLeilao();
         }
-        return null;
     }
 
-    public Leilao Consultar(int dia,int mes, int ano){
+    public Leilao ConsultarDataInicio(Data data){
         for (Leilao leilao: leilaos){
-            if (leilao.getDataInicio().getDia() == dia &&leilao.getDataInicio().getMes() == mes &&leilao.getDataInicio().getAno() == ano){
+            if (leilao.getDataInicio().getDia() == data.getDia()
+                    &&leilao.getDataInicio().getMes() == data.getMes()&&
+                    leilao.getDataInicio().getAno() == data.getAno() &&
+            leilao.getDataInicio().getHora() == data.getHora() && leilao.getDataInicio().getMinuto() == data.getMinuto() ){
                 return leilao;
             }
         }
@@ -29,29 +31,29 @@ public class LeiloesRepositorio {
         leilaos.add(leilao);
     }
 
-    public void RemoverLeilaoPorData(int dia,int mes, int ano){
-        Leilao aux = Consultar(dia,mes,ano);
+    public void RemoverLeilaoPorData(Data data){
+        Leilao aux = ConsultarDataInicio(data);
         leilaos.remove(aux);
     }
-
-    public String  CalcularFatura(){
-        double aux = 0.0;
-        for (Leilao leilao: leilaos){
-            if (leilao.getStatus().equals(Leilao.StatusLeilao.FINALIZADO)){
-                aux = leilao.calcularFatura(leilao);
-                return leilao.toStringLeilao()+"n\nLeilao rendeu de fattura: "+aux;
-            }
-            aux =0;
-        }
-        return null;
+    public List<Leilao> ListarRepositorioLista(){
+        return leilaos;
     }
 
-    public String VerificacaoInstituicao() {
-        for (Leilao leilao : leilaos) {
-            return "\nInstituiçao vinculada com o leilao: " + leilao.getInst()
-                    + "\nLeilao da Data: " + leilao.getDataInicio().imprimirData();
+    public double CalcularFatura(Data data){
+        Leilao leilao = ConsultarDataInicio(data);
+        double aux = 0.0;
+        if (leilao.getStatus().equals(Leilao.StatusLeilao.FINALIZADO)){
+            aux = leilao.calcularFatura(leilao);
         }
-        return null;
+        return aux;
+    }
+
+    public void VerificacaoInstituicao() {
+        for (Leilao leilao : leilaos) {
+            System.out.println("\nInstituiçao vinculada com o leilao: ");
+            leilao.getInst().toStringInstituicao();
+            System.out.println("\nLeilao da Data: "); leilao.getDataInicio().imprimirData();
+        }
     }
 
     public void OrdenacaoLista() {
@@ -65,42 +67,10 @@ public class LeiloesRepositorio {
         }
     }
 
-    public void SetarStatusPorDataAtual(Data dataAtual){
+    public void ApresentacaoLeilao (){
         for (Leilao leilao:leilaos){
-            if (dataAtual == leilao.getDataInicio().Comparar(leilao.getDataInicio(),dataAtual) &&
-            dataAtual != leilao.getDataTermino().Comparar(leilao.getDataTermino(),dataAtual)){
-                leilao.setStatus(Leilao.StatusLeilao.ANDAMENTO);
-            }
-            if (dataAtual != leilao.getDataInicio().Comparar(leilao.getDataInicio(),dataAtual) &&
-                    dataAtual != leilao.getDataTermino().Comparar(leilao.getDataTermino(),dataAtual)){
-                leilao.setStatus(Leilao.StatusLeilao.ABERTO);
-            }
-            if (dataAtual == leilao.getDataInicio().Comparar(leilao.getDataInicio(),dataAtual) &&
-                    dataAtual == leilao.getDataTermino().Comparar(leilao.getDataTermino(),dataAtual)){
-                leilao.setStatus(Leilao.StatusLeilao.FINALIZADO);
-            }
+            leilao.toStringLeilao();
         }
-    }
-
-    public String ApresentacaoLeilao (){
-        for (Leilao leilao:leilaos){
-            if (leilao.getStatus().equals(Leilao.StatusLeilao.ABERTO)){
-                leilao.toStringLeilao();
-                for (Veiculo veiculo:leilao.getVeiculos()) { return veiculo.toStringVeiculo()+"\nGanhador: "+"N/A"; }
-                for (Imovel imovel: leilao.getImovels()){return imovel.toStringImovel()+"\nGanhador: "+"N/A";}
-            }
-            if (leilao.getStatus().equals(Leilao.StatusLeilao.FINALIZADO)){
-                leilao.toStringLeilao();
-                for (Veiculo veiculo:leilao.getVeiculos()){ return veiculo.toStringVeiculo() + veiculo.GanhadorVeiculo(veiculo).toStringLance(); }
-                for (Imovel imovel:leilao.getImovels()){return imovel.toStringImovel() + imovel.GanhadorImovel(imovel).toStringLance();}
-                }
-            if (leilao.getStatus().equals(Leilao.StatusLeilao.ANDAMENTO)){
-                leilao.toStringLeilao();
-                for (Veiculo veiculo: leilao.getVeiculos()){ return veiculo.toStringVeiculo()+"\nGanhador: "+"N/A"; }
-                for (Imovel imovel:leilao.getImovels()){return imovel.toStringImovel() + imovel.GanhadorImovel(imovel).toStringLance();}
-                }
-        }
-        return null;
     }
 
 }

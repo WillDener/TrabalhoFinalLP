@@ -53,7 +53,8 @@ public class Veiculo extends Produto {
         this.preco = preco;
     }
 
-    public String toStringVeiculo() {
-        return toStringProduto()+"\nTipo: "+tipo+"\nPlaca: "+placa+"\nAno: "+anoLancamento;
+    public void toStringVeiculo() {
+        toStringProduto();
+        System.out.println("\nTipo: "+tipo+"\nPlaca: "+placa+"\nAno: "+anoLancamento);
     }
 }

@@ -54,8 +54,8 @@ public class Data {
         this.minuto = minuto;
     }
 
-    public String imprimirData() {
-        return "data: "+dia+"/"+mes+"/"+ano+"\nhorario: "+hora+":"+minuto;
+    public void imprimirData() {
+        System.out.println("data: "+dia+"/"+mes+"/"+ano+"\nhorario: "+hora+":"+minuto);
     }
 
     public Data Comparar (Data data, Data data2){

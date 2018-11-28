@@ -52,7 +52,9 @@ public class Imovel extends Produto {
         this.preco = preco;
     }
 
-    public String toStringImovel(){
-        return toStringProduto()+endereco.ImprimirEndereco()+"\nTipo: "+tipo+"\nAno Construcao: "+anoConstrucao;
+    public void toStringImovel(){
+        toStringProduto();
+        endereco.ImprimirEndereco();
+        System.out.println("\nTipo: "+tipo+"\nAno Construcao: "+anoConstrucao);
     }
 }

@@ -38,8 +38,10 @@ public class Lance {
         this.data = data;
     }
 
-    public String toStringLance(){
-        return "\nValor: "+valor+cliente.toStringClienteLance()+data.imprimirData()+produto.toStringProduto();
+    public void toStringLance(){
+        cliente.toStringClienteLance();
+        data.imprimirData();
+        System.out.println("\nValor: "+valor);
     }
 
     public Lance() {

@@ -45,7 +45,7 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String ImprimirEndereco() {
-        return "endereco: " + enderecoCompleto + "\ncidade: " + cidade + "\nestado: " + estado + "\ncep: " + cep;
+    public void ImprimirEndereco() {
+        System.out.println("endereco: " + enderecoCompleto + "\ncidade: " + cidade + "\nestado: " + estado + "\ncep: " + cep);
     }
 }

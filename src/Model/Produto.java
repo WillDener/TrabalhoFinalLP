@@ -57,13 +57,10 @@ public class Produto {
         this.lances = lances;
     }
 
-    public String ListarLancesProduto(){
+    public void ListarLancesProduto(){
         for (Lance lance:lances){
-            if (lance.getProduto().getDocumento().equals(documento)){
-                return lance.toStringLance();
-            }
+            lance.toStringLance();
         }
-        return null;
     }
 
     public double calcularLances(){
@@ -74,28 +71,29 @@ public class Produto {
         return cont;
     }
 
-    public String toStringProduto() {
-        return "\nNome: "+nome+"\nDocumento: "+documento+"\nDescricao: "+descricao+"\nLeilao: "+leilao+"\nLances feito:\n"+ListarLancesProduto();
+    public void toStringProduto() {
+        System.out.println("\nNome: "+nome+"\nDocumento: "+documento+"\nDescricao: "+descricao+"\nLances feito:\n");
+        ListarLancesProduto();
     }
 
-    public Lance GanhadorImovel (Imovel imovel){
-        Lance maiorLance = new Lance();
+    public double GanhadorImovel (Imovel imovel){
+        double valor = 0.0;
         for (Lance lance:imovel.getLances()){
-            if (lance.getValor() > maiorLance.getValor()){
-                maiorLance.equals(lance);
+            if (lance.getValor() > valor){
+                valor = lance.getValor();
             }
         }
-        return maiorLance;
+        return valor;
     }
 
-    public Lance GanhadorVeiculo (Veiculo veiculo){
-        Lance maiorLance = new Lance();
+    public double GanhadorVeiculo (Veiculo veiculo){
+        double valor = 0.0;
         for (Lance lance:veiculo.getLances()){
-            if (lance.getValor() > maiorLance.getValor()){
-                maiorLance.equals(lance);
+            if (lance.getValor() > valor){
+                valor = lance.getValor();
             }
         }
-        return maiorLance;
+        return valor;
     }
 
     public Produto(){}

@@ -25,7 +25,7 @@ public class Instituicao {
         this.cnpj = cnpj;
     }
 
-    public String toStringInstituicao(){
-        return "\nNome Instituicao: "+nome+"\nCNPJ: "+cnpj;
+    public void toStringInstituicao(){
+        System.out.println("\nNome Instituicao: "+nome+"\nCNPJ: "+cnpj);
     }
 }

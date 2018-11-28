@@ -17,7 +17,7 @@ import Model.Leilao;
 import Model.Veiculo;
 import Model.Veiculo.TipoCarro;
 
-public class TesteJUnit {
+public class TesteJUnitCliente {
 
     List<Imovel> imovels= new ArrayList<>();
     List<Veiculo> veiculos= new ArrayList<>();
@@ -114,12 +114,5 @@ public class TesteJUnit {
         Assert.assertEquals(1, clientes.size());
     }
 
-    /*@Test
-    public void LeilaoConstruct (){
-        List<Produto> produtos = new ArrayList<Produto>();
-        Leilao leilao = new Leilao(new Instituicao("Hospital", 2018),
-                produtos, new Data(13, 12, 1995, 19, 30),
-                new Data(23, 11, 2018, 22, 30), );
-        Assert.assertEquals(leilao, null);
-    }*/
+
 }

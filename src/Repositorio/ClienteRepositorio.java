@@ -11,11 +11,10 @@ public class ClienteRepositorio {
 
     public void AdiconarCliente (Cliente cliente){ clientes.add(cliente);}
 
-    public String ListarClientescadastrados(){
+    public void ListarClientescadastrados(){
         for (Cliente cliente: clientes){
-            return cliente.toStringClienteLance();
+             cliente.toStringClienteLance();
         }
-        return null;
     }
 
     public Cliente Consultar (String login, String senha){

@@ -53,7 +53,7 @@ public class VeiculoRepositorio {
         }
     }
 
-    public String ApresentacaoListaDeVeiculos(){
+    public void ApresentacaoListaDeVeiculos(){
         Veiculo temp;
         for (int i=0; i < veiculos.size(); i++){
             for (int j=i+1; j<= veiculos.size();j++){
@@ -64,18 +64,24 @@ public class VeiculoRepositorio {
                 }
             }
         }
-        for (Veiculo veiculo: veiculos){
-            return "\nNome: "+veiculo.getNome()+"\nInstituicao responsavel pelo leilao: "+veiculo.getLeilao().getInst()
-                    +"\nQuantidade de Produtos:\n "+
-                    "Quantidade de Imoveis: "+ veiculo.getLeilao().getImovels().size()+
-                    "\nQuantidade de Veiculos: "+veiculo.getLeilao().getVeiculos().size()
-                    +"\nDados Leiloes"+"\nData: "+veiculo.getLeilao().getDataInicio().imprimirData()+
-                    "\nEndereco: "+veiculo.getLeilao().getEndereco().ImprimirEndereco()+
-                    "\nStatus Leilao: "+veiculo.getLeilao().getStatus()+
-                    "\nDados Produto: "+veiculo.toStringProduto()+
-                    "\nDados Veiculo: "+veiculo.toStringVeiculo();
+        for (Veiculo veiculo: veiculos) {
+            System.out.println("\nNome: ");
+            veiculo.getNome();
+            System.out.println("\nInstituicao responsavel pelo leilao: ");
+            veiculo.getLeilao().getInst().toStringInstituicao();
+            System.out.println("\nQuantidade de Produtos:\n ");
+            System.out.println("Quantidade de Imoveis: " + veiculo.getLeilao().getImovels().size() +
+                    "\nQuantidade de Veiculos: " + veiculo.getLeilao().getVeiculos().size());
+            System.out.println("\nDados Leiloes" + "\nData: ");
+            veiculo.getLeilao().getDataInicio().imprimirData();
+            System.out.println("\nEndereco: ");
+            veiculo.getLeilao().getEndereco().ImprimirEndereco();
+            System.out.println("\nStatus Leilao: " + veiculo.getLeilao().getStatus());
+            System.out.println("\nDados Produto: ");
+            veiculo.toStringProduto();
+            System.out.println("\nDados Veiculo: ");
+            veiculo.toStringVeiculo();
         }
-        return null;
     }
 
     public Veiculo FiltroPorPreco (double min, double max){
@@ -87,15 +93,11 @@ public class VeiculoRepositorio {
         return null;
     }
 
-    public String BuscaPorDescricao(String descricao){
+    public void BuscaPorDescricao(String descricao){
         for (Veiculo veiculo: veiculos){
             if (veiculo.getDescricao().equals(descricao)){
-                return veiculo.toStringVeiculo();
+                veiculo.toStringVeiculo();
             }
         }
-        return null;
     }
-
-
-
 }
