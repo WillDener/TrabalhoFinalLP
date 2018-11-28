@@ -134,10 +134,18 @@ public class TesteJUnitLeilao {
         cut.setImovels(cutImovel);
         Assert.assertEquals(0,cut.getImovels().size());
         cut.setDataInicio(new Data(12,12,2018,18,30));
+        Assert.assertEquals(12,cut.getDataInicio().getDia());
+        Assert.assertEquals(12,cut.getDataInicio().getMes());
+        Assert.assertEquals(2018,cut.getDataInicio().getAno());
         cut.setDataTermino(new Data(31,1,2019,18,30));
+        Assert.assertEquals(31,cut.getDataTermino().getDia());
+        Assert.assertEquals(1,cut.getDataTermino().getMes());
+        Assert.assertEquals(2019,cut.getDataTermino().getAno());
         cut.setVeiculos(cutVeiculo);
+        Assert.assertEquals(0,cut.getVeiculos().size());
         cut.setEndereco(new Endereco("RuaTeste","Testcity","TestStat","123456"));
-
+        Assert.assertEquals("RuaTeste",cut.getEndereco().getEnderecoCompleto());
+        Assert.assertEquals("Testcity",cut.getEndereco().getCidade());
     }
 
     @Test
@@ -157,5 +165,19 @@ public class TesteJUnitLeilao {
         leiloesRepositorio.AdicionarLeilao(leilaotest);
         leiloesRepositorio.OrdenacaoLista();
         leiloesRepositorio.ApresentacaoLeilao();
+    }
+
+    @Test
+    public void TestarListarLeiloes(){
+        LeiloesRepositorio cut = new LeiloesRepositorio();
+        cut.AdicionarLeilao(leilaotest3);
+        cut.ListarTodosLeiloes();
+    }
+
+    @Test
+    public void TesteVerificacaodeInstituicoes(){
+       LeiloesRepositorio cut = new LeiloesRepositorio();
+       cut.AdicionarLeilao(leilaotest3);
+       cut.VerificacaoInstituicao();
     }
 }
