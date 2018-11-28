@@ -122,6 +122,25 @@ public class TesteJUnitLeilao {
     }
 
     @Test
+    public void LeilaoSets(){
+        Leilao cut = new Leilao();
+        leilaoList.add(cut);
+        Assert.assertEquals(1,leilaoList.size());
+        cut.setInst(new Instituicao("Teste","12345678"));
+        Assert.assertEquals("Teste",cut.getInst().getNome());
+        Assert.assertEquals("12345678",cut.getInst().getCnpj());
+        List<Imovel> cutImovel = new ArrayList<>();
+        List<Veiculo> cutVeiculo = new ArrayList<>();
+        cut.setImovels(cutImovel);
+        Assert.assertEquals(0,cut.getImovels().size());
+        cut.setDataInicio(new Data(12,12,2018,18,30));
+        cut.setDataTermino(new Data(31,1,2019,18,30));
+        cut.setVeiculos(cutVeiculo);
+        cut.setEndereco(new Endereco("RuaTeste","Testcity","TestStat","123456"));
+
+    }
+
+    @Test
     public void RepositorioLeilao(){
         leiloesRepositorio.AdicionarLeilao(leilaotest3);
         Assert.assertEquals(1,leiloesRepositorio.ListarRepositorioLista().size());
