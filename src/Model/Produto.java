@@ -59,7 +59,8 @@ public class Produto {
 
     public void ListarLancesProduto(){
         for (Lance lance:lances){
-            lance.toStringLance();
+            if(lance.getProduto().getDocumento().equals(getDocumento()))
+                lance.toStringLance();
         }
     }
 
@@ -79,8 +80,9 @@ public class Produto {
     public double GanhadorImovel (Imovel imovel){
         double valor = 0.0;
         for (Lance lance:imovel.getLances()){
-            if (lance.getValor() > valor){
+            if (lance.getValor() > valor && lance.getProduto().equals(imovel)){
                 valor = lance.getValor();
+                lance.toStringLance();
             }
         }
         return valor;
@@ -89,8 +91,9 @@ public class Produto {
     public double GanhadorVeiculo (Veiculo veiculo){
         double valor = 0.0;
         for (Lance lance:veiculo.getLances()){
-            if (lance.getValor() > valor){
+            if (lance.getValor() > valor && lance.getProduto().equals(veiculo)){
                 valor = lance.getValor();
+                lance.toStringLance();
             }
         }
         return valor;

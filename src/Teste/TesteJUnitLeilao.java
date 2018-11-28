@@ -131,7 +131,12 @@ public class TesteJUnitLeilao {
         imovelList.add(CasaPraia);
         lanceList.add(lance1);
         veiculoList.add(motoSerra);
-        Assert.assertEquals(25000.0,leiloesRepositorio.CalcularFatura(new Data(21,03,2017,14,30)),0.0);
+        Assert.assertEquals(12500.0,leiloesRepositorio.CalcularFatura(new Data(21,03,2017,14,30)),0.0);
+        //leiloesRepositorio.ApresentacaoLeilao();
+        veiculoList.add(carroDoSenna);
+        leiloesRepositorio.AdicionarLeilao(leilaotest2);
+        leiloesRepositorio.AdicionarLeilao(leilaotest);
+        leiloesRepositorio.OrdenacaoLista();
         leiloesRepositorio.ApresentacaoLeilao();
     }
 }

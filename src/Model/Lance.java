@@ -1,5 +1,7 @@
 package Model;
 
+import javax.print.Doc;
+
 public class Lance {
 
     private double valor;
@@ -32,7 +34,7 @@ public class Lance {
     }
 
     public Lance(double valor, Produto produto, Cliente cliente,Data data) {
-        this.valor = valor;
+        if (valor > getValor()){ this.valor = valor;}
         this.produto = produto;
         this.cliente = cliente;
         this.data = data;
