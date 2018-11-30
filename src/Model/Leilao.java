@@ -11,6 +11,7 @@ public class Leilao {
     private Data dataTermino;
     private Endereco endereco;
     private StatusLeilao status;
+    private Data dataAtual;
 
     public enum StatusLeilao {
         ABERTO,
@@ -44,6 +45,10 @@ public class Leilao {
 
     public Data getDataInicio() {
         return dataInicio;
+    }
+
+    public void setDataAtual(Data dataAtual) {
+        this.dataAtual = dataAtual;
     }
 
     public void setDataInicio(Data dataInicio) {
@@ -81,7 +86,7 @@ public class Leilao {
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
         this.endereco = endereco;
-        this.status = setarStatus(dataAtual);
+        this.status = setarStatus(this.dataAtual=dataAtual);
     }
 
     public void toStringLeilao(){

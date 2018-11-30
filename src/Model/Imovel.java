@@ -57,4 +57,6 @@ public class Imovel extends Produto {
         endereco.ImprimirEndereco();
         System.out.println("\nTipo: "+tipo+"\nAno Construcao: "+anoConstrucao);
     }
+
+    public Imovel(){}
 }
