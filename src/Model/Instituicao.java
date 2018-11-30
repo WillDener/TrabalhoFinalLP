@@ -28,4 +28,7 @@ public class Instituicao {
     public void toStringInstituicao(){
         System.out.println("\nNome Instituicao: "+nome+"\nCNPJ: "+cnpj);
     }
+
+    public Instituicao(){
+    }
 }

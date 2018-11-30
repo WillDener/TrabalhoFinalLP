@@ -29,10 +29,10 @@ public class VeiculoRepositorio {
         }
     }
 
-    public Veiculo buscarPorDocumentoVeiculo(String veiculo){
-        for (Veiculo veiculo1:veiculos){
-            if (veiculo1.equals(veiculo)){
-                return veiculo1;
+    public Veiculo buscarPorDocumentoVeiculo(String documento){
+        for (Veiculo veiculo:veiculos){
+            if (veiculo.getDocumento().equals(documento)){
+                return veiculo;
             }
         }
         return null;

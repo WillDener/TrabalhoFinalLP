@@ -57,4 +57,6 @@ public class Veiculo extends Produto {
         toStringProduto();
         System.out.println("\nTipo: "+tipo+"\nPlaca: "+placa+"\nAno: "+anoLancamento);
     }
+
+    public Veiculo(){ }
 }
