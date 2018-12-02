@@ -38,7 +38,7 @@ public class Menu {
                         System.out.println("Nenhuma instituicao está vinculada");
                         do {
                             System.out.println(" deseja vincular alguma instituicao insira: 1\n " +
-                                    " ou registrar uma nova insira 2\n"+"para sair insira e processeguir 3\n");
+                                    " ou registrar uma nova insira 2\n" + "para sair insira e processeguir 3\n");
                             op = scan.nextInt();
                             switch (op) {
                                 case 1:
@@ -63,22 +63,22 @@ public class Menu {
                                     System.out.println("instituicao vinculada ao leilao com sucesso!");
                                     instituicaoRepositorio.AdicionarInstituicao(instituicao);
                                     break;
-                                    case 3:
+                                case 3:
                                     break;
                                 default:
                                     System.out.println("Erro");
                                     break;
                             }
 
-                        }while (op!=3);
+                        } while (op != 3);
                     }
                     if (leilao.getVeiculos() == null) {
                         System.out.println("Nao possui nenhum veiculo relacionado ao leilao\n");
-                        do{
+                        do {
 
                             System.out.println("deseja criar relacionar veiculos ao leilao insira: 1\n" +
                                     "ou caso queria criar um novo post de veiculo para inserir insira: 2\n"
-                            +"caso queira sair e processeguir insira 3");
+                                    + "caso queira sair e processeguir insira 3");
                             op = scan.nextInt();
                             switch (op) {
                                 case 1:
@@ -134,6 +134,8 @@ public class Menu {
                                                     System.out.println("informe o valor do lance: ");
                                                     x = scan.nextDouble();
                                                     lance.setValor(x);
+                                                    lances.add(lance);
+                                                    break;
                                                 }
                                                 if (str.equals("n")) {
                                                     System.out.println("Cadastre um cleinte: ");
@@ -149,10 +151,11 @@ public class Menu {
                                                     System.out.println("informe o valor do lance.");
                                                     x = scan.nextDouble();
                                                     lance.setValor(x);
+                                                    lances.add(lance);
+                                                    break;
                                                 } else {
                                                     System.out.println("Informacao nao reconhecida");
                                                 }
-                                                lances.add(lance);
                                                 break;
                                             case 2:
                                                 break;
@@ -162,97 +165,100 @@ public class Menu {
                                 case 3:
                                     break;
                             }
-                        }while (op !=3);
+                        } while (op != 3);
                     }
                     if (leilao.getImovels() == null) {
                         System.out.println("Nao possui nenhum imovel relacionado ao leilao\n");
 
-                        do{
+                        do {
                             System.out.println("deseja criar relacionar imoveis ao leilao insira: 1\n" +
-                                    "ou caso queria criar um novo post de imovel para inserir insira: 2\n"+
+                                    "ou caso queria criar um novo post de imovel para inserir insira: 2\n" +
                                     "caso queira sair e processeguir insira 3:");
-                        op = scan.nextInt();
-                        switch (op) {
-                            case 1:
-                                List<Imovel> imovelList = new ArrayList<>();
-                                System.out.println("Informe o documento do imovel: ");
-                                str = scan.next();
-                                if (imovelRepositorio.ConsultarPorDoc(str) != null) {
-                                    imovelList.add(imovelRepositorio.ConsultarPorDoc(str));
-                                    leilao.setImovels(imovelList);
-                                } else {
-                                    System.out.println("Nenhum registro encontrado");
-                                }
-                                break;
-                            case 2:
-                                Imovel imovel = new Imovel();
-                                System.out.println("Insira o nome do imovel: ");
-                                str = scan.next();
-                                imovel.setNome(str);
-                                System.out.println("Insira a descricao do imovel: ");
-                                str = scan.next();
-                                imovel.setDescricao(str);
-                                System.out.println("Insira o Documento do imovel: ");
-                                str = scan.next();
-                                imovel.setDocumento(str);
-                                System.out.println("Insira o ano de construcao: ");
-                                op = scan.nextInt();
-                                imovel.setAnoConstrucao(op);
-                                System.out.println("Informe o valor do imovel: ");
-                                x = scan.nextDouble();
-                                imovel.setPreco(x);
-                                System.out.println("informe o tipo de imovel:<CASA/APARTAMENTO/EDIFICIO/TERRENO> ");
-                                str = scan.next();
-                                imovel.setTipo(Imovel.TipoImovel.valueOf(str));
-                                List<Lance> lances = new ArrayList<>();
-                                do {
-                                    System.out.println("Deseja criar um lista de lances ja pre cadastrados insira 1" +
-                                            "\n ou caso não queria insira 2");
-                                    op = scan.nextInt();
-                                    switch (op) {
-                                        case 1:
-                                            Lance lance = new Lance();
-                                            lance.setProduto(imovel);
-                                            System.out.println("Cliente que fara o lance ja possui cadastro : s or n ");
-                                            str = scan.next();
-                                            if (str.equals("s")) {
-                                                Cliente auxliar;
-                                                System.out.println("informe o  login e senha:");
-                                                login = scan.next();
-                                                senha = scan.next();
-                                                auxliar = clienteRepositorio.Consultar(login, senha);
-                                                lance.setCliente(auxliar);
-                                                System.out.println("informe o valor do lance");
-                                                x = scan.nextDouble();
-                                                lance.setValor(x);
-                                            }
-                                            if (str.equals("n")) {
-                                                System.out.println(" Cadastre um cleinte: ");
-                                                System.out.println("Informe  o nome, login, senha e cpf: ");
-                                                nome = scan.next();
-                                                login = scan.next();
-                                                senha = scan.next();
-                                                cpf = scan.next();
-                                                Cliente cliente = new Cliente(nome, cpf, login, senha);
-                                                lance.setCliente(cliente);
-                                                clienteRepositorio.AdiconarCliente(cliente);
-                                                System.out.println("informe o valor do lance ");
-                                                x = scan.nextDouble();
-                                                lance.setValor(x);
-                                            } else {
-                                                System.out.println("Informacao nao reconhecida");
-                                            }
-                                            lances.add(lance);
-                                            break;
-                                        case 2:
-                                            break;
+                            op = scan.nextInt();
+                            switch (op) {
+                                case 1:
+                                    List<Imovel> imovelList = new ArrayList<>();
+                                    System.out.println("Informe o documento do imovel: ");
+                                    str = scan.next();
+                                    if (imovelRepositorio.ConsultarPorDoc(str) != null) {
+                                        imovelList.add(imovelRepositorio.ConsultarPorDoc(str));
+                                        leilao.setImovels(imovelList);
+                                    } else {
+                                        System.out.println("Nenhum registro encontrado");
                                     }
-                                } while (op != 2);
-                                imovel.setLances(lances);
-                            case 3:
-                                break;
-                        }
-                        }while (op != 3);
+                                    break;
+                                case 2:
+                                    Imovel imovel = new Imovel();
+                                    System.out.println("Insira o nome do imovel: ");
+                                    str = scan.next();
+                                    imovel.setNome(str);
+                                    System.out.println("Insira a descricao do imovel: ");
+                                    str = scan.next();
+                                    imovel.setDescricao(str);
+                                    System.out.println("Insira o Documento do imovel: ");
+                                    str = scan.next();
+                                    imovel.setDocumento(str);
+                                    System.out.println("Insira o ano de construcao: ");
+                                    op = scan.nextInt();
+                                    imovel.setAnoConstrucao(op);
+                                    System.out.println("Informe o valor do imovel: ");
+                                    x = scan.nextDouble();
+                                    imovel.setPreco(x);
+                                    System.out.println("informe o tipo de imovel:<CASA/APARTAMENTO/EDIFICIO/TERRENO> ");
+                                    str = scan.next();
+                                    imovel.setTipo(Imovel.TipoImovel.valueOf(str));
+                                    List<Lance> lances = new ArrayList<>();
+                                    do {
+                                        System.out.println("Deseja criar um lista de lances ja pre cadastrados insira 1" +
+                                                "\n ou caso não queria insira 2");
+                                        op = scan.nextInt();
+                                        switch (op) {
+                                            case 1:
+                                                Lance lance = new Lance();
+                                                lance.setProduto(imovel);
+                                                System.out.println("Cliente que fara o lance ja possui cadastro : s or n ");
+                                                str = scan.next();
+                                                if (str.equals("s")) {
+                                                    Cliente auxliar;
+                                                    System.out.println("informe o  login e senha:");
+                                                    login = scan.next();
+                                                    senha = scan.next();
+                                                    auxliar = clienteRepositorio.Consultar(login, senha);
+                                                    lance.setCliente(auxliar);
+                                                    System.out.println("informe o valor do lance");
+                                                    x = scan.nextDouble();
+                                                    lance.setValor(x);
+                                                    lances.add(lance);
+                                                    break;
+                                                }
+                                                if (str.equals("n")) {
+                                                    System.out.println(" Cadastre um cleinte: ");
+                                                    System.out.println("Informe  o nome, login, senha e cpf: ");
+                                                    nome = scan.next();
+                                                    login = scan.next();
+                                                    senha = scan.next();
+                                                    cpf = scan.next();
+                                                    Cliente cliente = new Cliente(nome, cpf, login, senha);
+                                                    lance.setCliente(cliente);
+                                                    clienteRepositorio.AdiconarCliente(cliente);
+                                                    System.out.println("informe o valor do lance ");
+                                                    x = scan.nextDouble();
+                                                    lance.setValor(x);
+                                                    lances.add(lance);
+                                                    break;
+                                                } else {
+                                                    System.out.println("Informacao nao reconhecida");
+                                                }
+                                                break;
+                                            case 2:
+                                                break;
+                                        }
+                                    } while (op != 2);
+                                    imovel.setLances(lances);
+                                case 3:
+                                    break;
+                            }
+                        } while (op != 3);
                     }
                     if (leilao.getDataInicio() == null) {
                         System.out.println("insira a data e horario de inicio do leilao: dia , mes, ano , hora ,minuto ");
@@ -272,13 +278,13 @@ public class Menu {
                         min = scan.nextInt();
                         leilao.setDataTermino(new Data(dia, mes, ano, hora, min));
                     }
-                    if (leilao.getEndereco() == null){
+                    if (leilao.getEndereco() == null) {
                         System.out.println("Informe o endereco do leilao: \n informe a rua, cidade, estado e cep");
                         rua = scan.next();
                         cidade = scan.next();
                         estado = scan.next();
                         cep = scan.next();
-                        leilao.setEndereco(new Endereco(rua,cidade,estado,cep));
+                        leilao.setEndereco(new Endereco(rua, cidade, estado, cep));
                     }
                     System.out.println("informe a data atal para encerrar e finalizar o registro");
                     dia = scan.nextInt();
@@ -286,7 +292,7 @@ public class Menu {
                     ano = scan.nextInt();
                     hora = scan.nextInt();
                     min = scan.nextInt();
-                    leilao.setDataAtual(new Data(dia,mes,ano,hora,min));
+                    leilao.setDataAtual(new Data(dia, mes, ano, hora, min));
                     leiloesRepositorio.AdicionarLeilao(leilao);
                     break;
                 case 2:
@@ -303,7 +309,7 @@ public class Menu {
                 case 3:
                     System.out.println("Qual categoria de produto deseja cadastrar: veiculo ou imovel");
                     String cat = scan.next();
-                    if (cat.equals("veiculo")){
+                    if (cat.equals("veiculo")) {
                         Veiculo veiculo = new Veiculo();
                         System.out.println("Insira o nome do veiculo: ");
                         str = scan.next();
@@ -343,6 +349,11 @@ public class Menu {
                                         email = scan.next();
                                         pass = scan.next();
                                         lance.setCliente(clienteRepositorio.Consultar(email, pass));
+                                        System.out.println("informe o valor");
+                                        x = scan.nextDouble();
+                                        lance.setValor(x);
+                                        lances.add(lance);
+                                        break;
                                     }
                                     if (str.equals("n")) {
                                         System.out.println("Cadastre um cleinte: ");
@@ -355,10 +366,14 @@ public class Menu {
                                         lance.setCliente(cliente1);
                                         System.out.println("Cliente Registrado!");
                                         clienteRepositorio.AdiconarCliente(cliente1);
+                                        System.out.println("informe o valor do lance");
+                                        x = scan.nextDouble();
+                                        lance.setValor(x);
+                                        lances.add(lance);
+                                        break;
                                     } else {
                                         System.out.println("Informacao nao reconhecida");
                                     }
-                                    lances.add(lance);
                                     break;
                                 case 2:
                                     break;
@@ -367,7 +382,7 @@ public class Menu {
                         } while (op != 2);
                         veiculo.setLances(lances);
                     }
-                    if (cat.equals("imovel")){
+                    if (cat.equals("imovel")) {
                         Imovel imovel = new Imovel();
                         System.out.println("Insira o nome do imovel: ");
                         str = scan.next();
@@ -403,6 +418,11 @@ public class Menu {
                                         login = scan.next();
                                         senha = scan.next();
                                         lance.setCliente(clienteRepositorio.Consultar(login, senha));
+                                        System.out.println("informe o valor do lance: ");
+                                        x = scan.nextDouble();
+                                        lance.setValor(x);
+                                        lances.add(lance);
+                                        break;
                                     }
                                     if (str.equals("n")) {
                                         System.out.println(" Cadastre um cleinte: ");
@@ -414,10 +434,14 @@ public class Menu {
                                         Cliente cliente1 = new Cliente(nome, cpf, login, senha);
                                         lance.setCliente(cliente1);
                                         clienteRepositorio.AdiconarCliente(cliente1);
+                                        System.out.println("informe o valor do lance");
+                                        x = scan.nextDouble();
+                                        lance.setValor(x);
+                                        lances.add(lance);
+                                        break;
                                     } else {
                                         System.out.println("Informacao nao encontrada");
                                     }
-                                    lances.add(lance);
                                     break;
                                 case 2:
                                     break;
@@ -425,8 +449,7 @@ public class Menu {
                         } while (op != 2);
                         imovel.setLances(lances);
                         break;
-                    }
-                    else {
+                    } else {
                         System.out.println("Erro.");
                     }
                     break;
@@ -435,56 +458,55 @@ public class Menu {
                     Cliente temp = new Cliente();
                     System.out.println(" Ja possui cadastro ? <s / n> :");
                     str = scan.next();
-                    if (str.equals("s")){
+                    if (str.equals("s")) {
                         System.out.println("informe o login e senha do usuario");
                         login = scan.next();
                         senha = scan.next();
-                        temp.equals(clienteRepositorio.Consultar(login,senha));
+                        temp.equals(clienteRepositorio.Consultar(login, senha));
                     }
-                    if (str.equals("n")){
-                        System.out.println("vamos Cadastrar um cliente no sistema:"+
-                                "\n informe o nome, cpf , login e senha");
-                        nome = scan.next();
-                        cpf  = scan.next();
-                        login = scan.next();
-                        senha = scan.next();
-                        temp.setNome(nome);
-                        temp.setCpf(cpf);
-                        temp.setLogin(login);
-                        temp.setSenha(senha);
-                        clienteRepositorio.AdiconarCliente(temp);
-                    }
-                    novo.setCliente(temp);
-                    System.out.println("Diga qual a categoria de produto que deseja: <veiculo/imovel>");
-                    cat = scan.next();
-                    if (cat.equals("veiculo")){
-                        Veiculo veiculo;
-                        System.out.println("informe o documento do produto que deseja dar o lance encima:");
-                        str = scan.next();
-                        veiculo = veiculoRepositorio.buscarPorDocumentoVeiculo(str);
-                        if(veiculo != null){
-                            System.out.println("informe o valor do lance: ");
-                            x = scan.nextDouble();
-                            novo.setValor(x);
-                            veiculo.addlance(novo);
-                            System.out.println("lance efetuado!");
+                        if (str.equals("n")) {
+                            System.out.println("vamos Cadastrar um cliente no sistema:" +
+                                    "\n informe o nome, cpf , login e senha");
+                            nome = scan.next();
+                            cpf = scan.next();
+                            login = scan.next();
+                            senha = scan.next();
+                            temp.setNome(nome);
+                            temp.setCpf(cpf);
+                            temp.setLogin(login);
+                            temp.setSenha(senha);
+                            clienteRepositorio.AdiconarCliente(temp);
                         }
-                        else System.out.println("nenhum produto encontrado!");
-                    }
-                    if (cat.equals("imovel")){
-                        Imovel imovel;
-                        System.out.println("informe o documento do produto que deseja dar o lance encima:");
-                        str = scan.next();
-                        imovel = imovelRepositorio.ConsultarPorDoc(str);
-                        if (imovel != null ){
-                            System.out.println("informe o valor do lance: ");
-                            x = scan.nextDouble();
-                            novo.setValor(x);
-                            imovel.addlance(novo);
-                            System.out.println("lance efetuado !");
-                        }else System.out.println("Nenhum Registro encontrado!");
-                    }
-                    break;
+                        novo.setCliente(temp);
+                        System.out.println("Diga qual a categoria de produto que deseja: <veiculo/imovel>");
+                        cat = scan.next();
+                        if (cat.equals("veiculo")) {
+                            Veiculo veiculo;
+                            System.out.println("informe o documento do produto que deseja dar o lance encima:");
+                            str = scan.next();
+                            veiculo = veiculoRepositorio.buscarPorDocumentoVeiculo(str);
+                            if (veiculo != null) {
+                                System.out.println("informe o valor do lance: ");
+                                x = scan.nextDouble();
+                                novo.setValor(x);
+                                veiculo.addlance(novo);
+                                System.out.println("lance efetuado!");
+                            } else System.out.println("nenhum produto encontrado!");
+                        }
+                        if (cat.equals("imovel")) {
+                            Imovel imovel;
+                            System.out.println("informe o documento do produto que deseja dar o lance encima:");
+                            str = scan.next();
+                            imovel = imovelRepositorio.ConsultarPorDoc(str);
+                            if (imovel != null) {
+                                System.out.println("informe o valor do lance: ");
+                                x = scan.nextDouble();
+                                novo.setValor(x);
+                                imovel.addlance(novo);
+                                System.out.println("lance efetuado !");
+                            } else System.out.println("Nenhum Registro encontrado!");
+                        }
+                        break;
                 case 5:
                     System.out.println("informe que tipo de leilao deseja vizualizar:<aberto/andamento/fechado> ");
                     str = scan.next();
