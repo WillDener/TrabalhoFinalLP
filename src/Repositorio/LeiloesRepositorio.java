@@ -73,4 +73,8 @@ public class LeiloesRepositorio {
         }
     }
 
+    public List<Leilao> repositorio(){
+        return leilaos;
+    }
+
 }

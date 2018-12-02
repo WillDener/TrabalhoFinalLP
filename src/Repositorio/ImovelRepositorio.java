@@ -84,13 +84,14 @@ public class ImovelRepositorio {
         }
     }
 
-    public Imovel FiltroPreco(double min, double max){
+    public List<Imovel> FiltroPreco(double min, double max){
+        List<Imovel> encontrados = new ArrayList<>();
         for (Imovel imovel: imovels){
             if (imovel.getPreco() >= min && imovel.getPreco()<=max){
-                return imovel;
+                encontrados.add(imovel);
             }
         }
-        return null;
+        return encontrados;
     }
 
     public void BuscaPorDescricao (String descricao){

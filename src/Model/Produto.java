@@ -99,5 +99,9 @@ public class Produto {
         return valor;
     }
 
+    public void addlance (Lance lance){
+        lances.add(lance);
+    }
+
     public Produto(){}
 }

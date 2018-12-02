@@ -84,13 +84,14 @@ public class VeiculoRepositorio {
         }
     }
 
-    public Veiculo FiltroPorPreco (double min, double max){
+    public List<Veiculo> FiltroPorPreco (double min, double max){
+        List<Veiculo> veiculoList = new ArrayList<>();
         for (Veiculo veiculo: veiculos){
             if (veiculo.getPreco() >= min && veiculo.getPreco() <= max){
-                return veiculo;
+                veiculoList.add(veiculo);
             }
         }
-        return null;
+        return veiculoList;
     }
 
     public void BuscaPorDescricao(String descricao){
